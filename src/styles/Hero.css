@@ -100,29 +100,50 @@
 }
 
 .btn-hero-primary {
-  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  background: linear-gradient(135deg, hsl(170, 74%, 49%),hsl(170, 56%, 35%));
   color: var(--white);
   border: none;
 }
 
 .btn-hero-primary:hover {
-  background: linear-gradient(135deg, #f7931e, #ff6b35);
+  background: linear-gradient(135deg, rgb(219, 101, 41), rgb(254, 112, 42));
+
   color: var(--white);
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
 }
 
-.btn-hero-outline {
-  background: transparent;
-  color: var(--white);
-  border: 2px solid var(--white);
+/* .btn-hero-outlines {
+  background-color: white;
+  
 }
 
 .btn-hero-outline:hover {
-  background: var(--white);
+   background: linear-gradient(135deg, rgb(219, 101, 41), rgb(254, 112, 42));
+
   color: var(--primary-color);
   transform: translateY(-3px);
+} */
+
+
+
+.btn-hero-outlines {
+  background: white; /* White background */
+  color: hsl(170, 74%, 49%);
+  border: 2px solid hsl(170, 74%, 49%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
+
+.btn-hero-outlines:hover {
+  background: linear-gradient(135deg, rgb(219, 101, 41), rgb(254, 112, 42));
+  color: var(--white);
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
+}
+
 
 /* Carousel Controls */
 .carousel-control-prev,

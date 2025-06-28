@@ -48,7 +48,7 @@ const HeroCarousel = () => {
       mainTitle: 'Learn From Best Online Training',
       subtitle: 'Achieve perfect marks in exams with one-on-one online tuition from qualified UK teachers',
       primaryBtn: 'Book A Demo',
-      secondaryBtn: 'Learn More'
+      secondbutton: 'Learn More'
     },
     {
       id: 2,
@@ -57,7 +57,7 @@ const HeroCarousel = () => {
       mainTitle: 'CBSE, ICSE, IGCSE Excellence',
       subtitle: 'Expert tutoring for all major curriculum boards with proven results and grade improvements',
       primaryBtn: 'View Courses',
-      secondaryBtn: 'Success Stories'
+      secondbutton: 'Success Stories'
     },
     {
       id: 3,
@@ -66,7 +66,7 @@ const HeroCarousel = () => {
       mainTitle: 'Advanced Online Classroom',
       subtitle: 'Engaging virtual classrooms with advanced tools for effective and enjoyable learning experience',
       primaryBtn: 'Start Learning',
-      secondaryBtn: 'Platform Tour'
+      secondbutton: 'Platform Tour'
     }
   ];
 
@@ -123,9 +123,9 @@ const HeroCarousel = () => {
                           <i className="bi bi-calendar-check me-2"></i>
                           {slide.primaryBtn}
                         </a>
-                        <button className="btn btn-hero-outline">
+                        <button className="btn btn-hero-outlines">
                           <i className="bi bi-play-circle me-2"></i>
-                          {slide.secondaryBtn}
+                          {slide.secondbutton}
                         </button>
                       </div>
                     </div>

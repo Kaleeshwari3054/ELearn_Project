@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import '../styles/BookDemo.css';
@@ -9,10 +11,13 @@ const BookDemo = () => {
     studentName: '',
     subject: '',
     whatsappNumber: '',
-    className: ''
+    className: '',
+    location: ''
+
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,47 +32,57 @@ const BookDemo = () => {
     setIsSubmitting(true);
     setSubmitStatus({ type: '', message: '' });
 
-    try {
-      // Validate form data
-      if (!formData.syllabus || !formData.studentName || !formData.subject || 
-          !formData.whatsappNumber || !formData.className) {
-        throw new Error('Please fill in all required fields');
-      }
-
-      // Add demo request to Firebase
-      const docRef = await addDoc(collection(db, 'demoRequests'), {
-        ...formData,
-        submittedAt: new Date(),
-        status: 'pending'
-      });
-
-      console.log('Demo request submitted with ID: ', docRef.id);
-      
-      setSubmitStatus({
-        type: 'success',
-        message: 'Your demo request has been submitted successfully! We will contact you soon.'
-      });
-      
-      // Reset form
-      setFormData({
-        syllabus: '',
-        studentName: '',
-        subject: '',
-        whatsappNumber: '',
-        className: ''
-      });
-
-    } catch (error) {
-      console.error('Error submitting demo request: ', error);
-      setSubmitStatus({
-        type: 'error',
-        message: error.message || 'Failed to submit demo request. Please try again.'
-      });
-    } finally {
-      setIsSubmitting(false);
+      try {
+    // ✅ Validation
+    if (
+      !formData.syllabus ||
+      !formData.studentName ||
+      !formData.subject ||
+      !formData.whatsappNumber ||
+      !formData.className
+    ) {
+      throw new Error('Please fill in all required fields');
     }
-  };
 
+    // ✅ Add to Firestore
+    const docRef = await addDoc(collection(db, 'demoSubmit'), {
+      ...formData,
+      submittedAt: new Date(),
+    });
+
+    console.log('Demo request submitted with ID: ', docRef.id);
+
+    // ✅ Show success message
+    setSubmitStatus({
+      type: 'success',
+      message: 'Your demo request has been submitted successfully!',
+    });
+
+    // ✅ Reset form
+    setFormData({
+      syllabus: '',
+      studentName: '',
+      subject: '',
+      whatsappNumber: '',
+      className: '',
+      location: '' // 🔁 Add this if you use location input
+    });
+
+    // ✅ Redirect to home after 2 seconds
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
+
+  } catch (error) {
+    console.error('Error submitting demo request: ', error);
+    setSubmitStatus({
+      type: 'error',
+      message: error.message || 'Failed to submit demo request. Please try again.',
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   return (
     <div className="book-demo-page">
       <div className="container">
@@ -103,10 +118,11 @@ const BookDemo = () => {
               >
                 <option value="">Select Curriculum Board</option>
                 <option value="CBSE">CBSE</option>
-                <option value="Kerala">Kerala Board</option>
+                <option value="Kerala">GCSE</option>
                 <option value="ICSE">ICSE</option>
                 <option value="IGCSE">IGCSE</option>
                 <option value="A-Levels">A-Levels</option>
+                <option value="UK Curriculum">UK Curriculum</option>
                 <option value="Others">Others</option>
               </select>
             </div>
@@ -182,6 +198,23 @@ const BookDemo = () => {
                 required
               />
             </div>
+            <div className="form-group">
+              <label className="form-label" htmlFor="location">
+                <i className="bi bi-geo-alt me-2"></i>
+                Location *
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="location"
+                name="location"
+                placeholder="Enter your city or area"
+                value={formData.location}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
 
             <button
               type="submit"
@@ -190,7 +223,7 @@ const BookDemo = () => {
             >
               {isSubmitting && <span className="loading-spinner"></span>}
               <i className="bi bi-send me-2"></i>
-              {isSubmitting ? 'Submitting...' : 'Submit Demo Request'}
+              {isSubmitting ? 'Submitting...' : 'Submit Demo'}
             </button>
           </form>
 

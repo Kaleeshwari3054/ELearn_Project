@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect,useState,useRef}from 'react';
 import HeroCarousel from '../components/HeroCarousel';
 import '../styles/Home.css';
 
@@ -114,6 +114,158 @@ const getLevelColor = (level) => {
 };
 
 const Home = () => {
+  //   const [isVisible, setIsVisible] = useState(false);
+  // const [counts, setCounts] = useState({
+  //   years: 0,
+  //   countries: 0,
+  //   tutors: 0,
+  //   students: 0
+  // });
+  
+  // const sectionRef = useRef(null);
+
+  // const statsData = [
+  //   { 
+  //     key: 'years',
+  //     number: 4, 
+  //     label: 'Years',
+  //     icon: 'bi-calendar-check',
+  //     color: '#ff6b35',
+  //     description: 'Of Excellence'
+  //   },
+  //   { 
+  //     key: 'countries',
+  //     number: 12, 
+  //     label: 'Countries',
+  //     icon: 'bi-globe',
+  //     color: '#4ade80',
+  //     description: 'Worldwide Reach'
+  //   },
+  //   { 
+  //     key: 'tutors',
+  //     number: 2000, 
+  //     label: 'Tutors',
+  //     icon: 'bi-person-check',
+  //     color: '#3b82f6',
+  //     description: 'Expert Teachers'
+  //   },
+  //   { 
+  //     key: 'students',
+  //     number: 10000, 
+  //     label: 'Students',
+  //     icon: 'bi-people',
+  //     color: '#8b5cf6',
+  //     description: 'Happy Learners'
+  //   }
+  // ];
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (entry.isIntersecting && !isVisible) {
+  //         setIsVisible(true);
+  //         startCounting();
+  //       }
+  //     },
+  //     { threshold: 0.3 }
+  //   );
+
+  //   if (sectionRef.current) {
+  //     observer.observe(sectionRef.current);
+  //   }
+
+  //   return () => {
+  //     if (sectionRef.current) {
+  //       observer.unobserve(sectionRef.current);
+  //     }
+  //   };
+  // }, [isVisible]);
+
+  // const startCounting = () => {
+  //   statsData.forEach((stat) => {
+  //     const duration = 2000; // 2 seconds
+  //     const steps = 60;
+  //     const increment = stat.number / steps;
+  //     let current = 0;
+  //     let step = 0;
+
+  //     const timer = setInterval(() => {
+  //       step++;
+  //       current = Math.min(Math.ceil(increment * step), stat.number);
+        
+  //       setCounts(prev => ({
+  //         ...prev,
+  //         [stat.key]: current
+  //       }));
+
+  //       if (current >= stat.number) {
+  //         clearInterval(timer);
+  //       }
+  //     }, duration / steps);
+  //   });
+  // };
+
+
+   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  const statsData = [
+    { 
+      number: 78, 
+      suffix: '+',
+      label: 'Classes Complete',
+      icon: 'bi-building'
+    },
+    { 
+      number: 20, 
+      suffix: 'k',
+      label: 'Total Students',
+      icon: 'bi-people'
+    },
+    { 
+      number: 400, 
+      suffix: 'k',
+      label: 'Library Books',
+      icon: 'bi-book'
+    },
+    { 
+      number: 1200, 
+      suffix: '+',
+      label: 'Certified Teachers',
+      icon: 'bi-award'
+    }
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  const formatNumber = (num, key) => {
+    if (key === 'tutors' && num >= 1000) {
+      return `${Math.floor(num / 1000)}K+`;
+    }
+    if (key === 'students' && num >= 1000) {
+      return `${Math.floor(num / 1000)}K+`;
+    }
+    return num.toString();
+  };
   return (
     <div className="home-page">
       <HeroCarousel />
@@ -207,6 +359,115 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+
+ <section className="counting-stats section-padding" ref={sectionRef}>
+      <div className="container">
+        <div className="row">
+          <div className="col-12 text-center mb-5">
+            <h2 className="section-title">
+              Our <span className="text-primary">Achievements</span>
+            </h2>
+            <p className="section-subtitle">
+              Numbers that speak for our excellence in education
+            </p>
+          </div>
+        </div>
+        
+        <div className="row justify-content-center">
+          {statsData.map((stat, index) => (
+            <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
+              <div className="stat-card">
+                <div className="stat-icon">
+                  <i className={`bi ${stat.icon}`}></i>
+                </div>
+                <div className="stat-content">
+                  <div className="stat-number">
+                    <div
+                      target={stat.number} 
+                      isVisible={isVisible}
+                      suffix={stat.suffix}
+                    />
+                  </div>
+                  <p className="stat-label">{stat.label}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+      
+       {/* <section className="stats-section" ref={sectionRef}>
+      <div className="stats-background"></div>
+      <div className="stats-overlay"></div>
+      
+      <div className="container">
+        <div className="row text-center mb-5">
+          <div className="col-lg-8 mx-auto">
+            <div className="stats-header">
+              <span className="stats-badge">OUR ACHIEVEMENTS</span>
+              <h2 className="stats-title">Success in Numbers</h2>
+              <p className="stats-description">
+                Trusted by thousands of students worldwide for quality education and proven results
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="row g-4">
+          {statsData.map((stat, index) => (
+            <div key={stat.key} className="col-lg-3 col-md-6">
+              <div className="stat-card" style={{ '--delay': `${index * 0.2}s`, '--color': stat.color }}>
+                <div className="stat-icon-wrapper">
+                  <i className={`bi ${stat.icon} stat-icon`}></i>
+                  <div className="stat-icon-bg"></div>
+                </div>
+                
+                <div className="stat-content">
+                  <div className="stat-number">
+                    {formatNumber(counts[stat.key], stat.key)}
+                  </div>
+                  <h4 className="stat-label">{stat.label}</h4>
+                  <p className="stat-description">{stat.description}</p>
+                </div>
+                
+                <div className="stat-progress">
+                  <div 
+                    className="stat-progress-bar"
+                    style={{ 
+                      width: isVisible ? '100%' : '0%',
+                      backgroundColor: stat.color
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="row mt-5">
+          <div className="col-12 text-center">
+            <div className="stats-cta">
+              <h3 className="cta-title">Ready to Join Our Success Story?</h3>
+              <p className="cta-description">
+                Start your learning journey with the UK's premier online education platform
+              </p>
+              <div className="cta-buttons">
+                <a href="/book-demo" className="btn btn-primary btn-lg me-3">
+                  <i className="bi bi-calendar-check me-2"></i>
+                  Book Free Demo
+                </a>
+                <a href="/courses" className="btn btn-outline-light btn-lg">
+                  <i className="bi bi-grid-3x3-gap me-2"></i>
+                  View Courses
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> */}
       {/* Features Section */}
       <section className="section-padding" id="features">
         <div className="container">
@@ -337,35 +598,35 @@ const Home = () => {
 
       {/* popular history */}
 
-  <section className="features-section">
-      <div className="features-background-overlay"></div>
-      <div className="container">
-        <div className="row text-center mb-5">
-          <div className="col-lg-8 mx-auto">
-            <div className="features-header">
-              <span className="features-badge">INSTRUCTORS</span>
-              <h2 className="features-title">Our Features</h2>
-            </div>
-          </div>
-        </div>
-
-        <div className="row g-4">
-          {features.map((feature) => (
-            <div key={feature.id} className="col-lg-4 col-md-6">
-              <div className="feature-card">
-                <div className="feature-icon-wrapper">
-                  <i className={`bi ${feature.icon} feature-icon`}></i>
-                </div>
-                <div className="feature-content">
-                  <h4 className="feature-title">{feature.title}</h4>
-                  <p className="feature-description">{feature.description}</p>
-                </div>
+      <section className="features-section">
+        <div className="features-background-overlay"></div>
+        <div className="container">
+          <div className="row text-center mb-5">
+            <div className="col-lg-8 mx-auto">
+              <div className="features-header">
+                <span className="features-badge">INSTRUCTORS</span>
+                <h2 className="features-title">Our Features</h2>
               </div>
             </div>
-          ))}
+          </div>
+
+          <div className="row g-4">
+            {features.map((feature) => (
+              <div key={feature.id} className="col-lg-4 col-md-6">
+                <div className="feature-card">
+                  <div className="feature-icon-wrapper">
+                    <i className={`bi ${feature.icon} feature-icon`}></i>
+                  </div>
+                  <div className="feature-content">
+                    <h4 className="feature-title">{feature.title}</h4>
+                    <p className="feature-description">{feature.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Subjects Section */}
       <section className="section-padding bg-light" id="subjects">
@@ -399,6 +660,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      
     </div>
   );
 };
