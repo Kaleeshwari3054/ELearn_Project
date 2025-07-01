@@ -15,10 +15,10 @@ const Footer = () => {
               for CBSE, ICSE, IGCSE, and British curriculum students.
             </p>
             <div className="d-flex gap-3">
-              <a href="#" className="text-light"><i className="bi bi-facebook fs-5"></i></a>
+              <a href="https://www.facebook.com/share/1HguFTRy7G/" className="text-light"><i className="bi bi-facebook fs-5"></i></a>
               <a href="#" className="text-light"><i className="bi bi-twitter fs-5"></i></a>
-              <a href="#" className="text-light"><i className="bi bi-instagram fs-5"></i></a>
-              <a href="#" className="text-light"><i className="bi bi-linkedin fs-5"></i></a>
+              <a href="https://www.instagram.com/seyontechnology?igsh=Z3AzdHk0a2ZtMGNy" className="text-light"><i className="bi bi-instagram fs-5"></i></a>
+              <a href="https://www.linkedin.com/posts/seyon-technology-digital-solutions_seyontech-applaunch-mobiletracker-activity-7345548751261810688-qb2Y?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAEhJoGUBegaTEHA4FJRgue-cSaot9swp-iQ&utm_campaign=whatsapp" className="text-light"><i className="bi bi-linkedin fs-5"></i></a>
             </div>
           </div>
           

@@ -43,7 +43,10 @@
   font-weight: 800;
   letter-spacing: 1px;
 }
-
+/* After scroll: black */
+.navbar-scrolled .brand-text {
+  color: #000000 !important;
+}
 .brand-tagline {
   font-size: 0.7rem;
   color: #4ade80;

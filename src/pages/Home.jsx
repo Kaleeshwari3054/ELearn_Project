@@ -257,15 +257,7 @@ const Home = () => {
     };
   }, []);
 
-  const formatNumber = (num, key) => {
-    if (key === 'tutors' && num >= 1000) {
-      return `${Math.floor(num / 1000)}K+`;
-    }
-    if (key === 'students' && num >= 1000) {
-      return `${Math.floor(num / 1000)}K+`;
-    }
-    return num.toString();
-  };
+ 
   return (
     <div className="home-page">
       <HeroCarousel />
