@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'react-phone-input-2/lib/bootstrap.css';
+import PhoneInput from 'react-phone-input-2';
+
 
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase/config';
+// import { db } from '../firebase/config';
 import '../styles/BookDemo.css';
 
 const BookDemo = () => {
@@ -17,7 +20,7 @@ const BookDemo = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,57 +35,57 @@ const navigate = useNavigate();
     setIsSubmitting(true);
     setSubmitStatus({ type: '', message: '' });
 
-      try {
-    // ✅ Validation
-    if (
-      !formData.syllabus ||
-      !formData.studentName ||
-      !formData.subject ||
-      !formData.whatsappNumber ||
-      !formData.className
-    ) {
-      throw new Error('Please fill in all required fields');
+    try {
+      // ✅ Validation
+      if (
+        !formData.syllabus ||
+        !formData.studentName ||
+        !formData.subject ||
+        !formData.whatsappNumber ||
+        !formData.className
+      ) {
+        throw new Error('Please fill in all required fields');
+      }
+
+      // ✅ Add to Firestore
+      const docRef = await addDoc(collection(db, 'demoSubmit'), {
+        ...formData,
+        submittedAt: new Date(),
+      });
+
+      console.log('Demo request submitted with ID: ', docRef.id);
+
+      // ✅ Show success message
+      setSubmitStatus({
+        type: 'success',
+        message: 'Your demo request has been submitted successfully!',
+      });
+
+      // ✅ Reset form
+      setFormData({
+        syllabus: '',
+        studentName: '',
+        subject: '',
+        whatsappNumber: '',
+        className: '',
+        location: '' // 🔁 Add this if you use location input
+      });
+
+      // ✅ Redirect to home after 2 seconds
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+
+    } catch (error) {
+      console.error('Error submitting demo request: ', error);
+      setSubmitStatus({
+        type: 'error',
+        message: error.message || 'Failed to submit demo request. Please try again.',
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // ✅ Add to Firestore
-    const docRef = await addDoc(collection(db, 'demoSubmit'), {
-      ...formData,
-      submittedAt: new Date(),
-    });
-
-    console.log('Demo request submitted with ID: ', docRef.id);
-
-    // ✅ Show success message
-    setSubmitStatus({
-      type: 'success',
-      message: 'Your demo request has been submitted successfully!',
-    });
-
-    // ✅ Reset form
-    setFormData({
-      syllabus: '',
-      studentName: '',
-      subject: '',
-      whatsappNumber: '',
-      className: '',
-      location: '' // 🔁 Add this if you use location input
-    });
-
-    // ✅ Redirect to home after 2 seconds
-    setTimeout(() => {
-      navigate('/');
-    }, 2000);
-
-  } catch (error) {
-    console.error('Error submitting demo request: ', error);
-    setSubmitStatus({
-      type: 'error',
-      message: error.message || 'Failed to submit demo request. Please try again.',
-    });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
   return (
     <div className="book-demo-page">
       <div className="container">
@@ -162,30 +165,32 @@ const navigate = useNavigate();
             </div>
 
             <div className="form-group">
-              <label className="form-label" htmlFor="whatsappNumber">
+              <label className="form-label">
                 <i className="bi bi-whatsapp me-2"></i>
                 WhatsApp Number *
               </label>
-              <div className="phone-input-group">
-                <span className="country-code">+91</span>
-                <input
-                  type="tel"
-                  className="form-control"
-                  id="whatsappNumber"
-                  name="whatsappNumber"
-                  placeholder="Enter mobile number"
-                  value={formData.whatsappNumber}
-                  onChange={handleInputChange}
-                  pattern="[0-9]{10}"
-                  required
-                />
-              </div>
+              <PhoneInput
+                country={'in'}
+                value={formData.whatsappNumber}
+                onChange={(phone) => setFormData({ ...formData, whatsappNumber: phone })}
+                inputClass="form-control"
+                inputStyle={{ width: '100%' }}
+                enableSearch={true}
+                placeholder="Enter WhatsApp number"
+                inputProps={{
+                  required: true,
+                  name: 'whatsappNumber',
+                }}
+              />
             </div>
+
+
+
 
             <div className="form-group">
               <label className="form-label" htmlFor="className">
                 <i className="bi bi-mortarboard me-2"></i>
-                Class *
+                Grade *
               </label>
               <input
                 type="text"

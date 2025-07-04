@@ -270,6 +270,9 @@
   .carousel-control-next {
     right: 15px;
   }
+  .hero-small-title{
+    margin-top: 100px;
+  }
 }
 
 @media (max-width: 576px) {

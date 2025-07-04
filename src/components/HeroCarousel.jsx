@@ -43,17 +43,17 @@ const HeroCarousel = () => {
   const slides = [
     {
       id: 1,
-      background: 'https://png.pngtree.com/thumb_back/fh260/background/20220314/pngtree-the-female-teacher-with-glasses-is-in-class-image_1048445.jpg',
+      background: 'https://bridge.edu/tefl/blog/wp-content/uploads/2024/06/Best-Digital-Tools-for-Teaching-English-Online.jpg',
       smallTitle: 'Enjoy Smooth Learning',
-      mainTitle: 'Learn From Best Online Training',
-      subtitle: 'Achieve perfect marks in exams with one-on-one online tuition from qualified UK teachers',
+      mainTitle: 'Study from Home – Anytime, Anywhere, with Expert Tutors!',
+      subtitle: 'Achieve perfect marks in exams with one-on-one online tuition from qualified UK tutors',
       primaryBtn: 'Book A Demo',
       secondbutton: 'Learn More'
     },
     {
       id: 2,
       background: 'https://www.venkateshwaragroup.in/vgiblog/wp-content/uploads/2022/09/Untitled-design-2-1.jpg',
-      smallTitle: 'Expert UK Teachers',
+      smallTitle: 'Expert UK tutors',
       mainTitle: 'CBSE, ICSE, IGCSE Excellence',
       subtitle: 'Expert tutoring for all major curriculum boards with proven results and grade improvements',
       primaryBtn: 'View Courses',
@@ -123,10 +123,10 @@ const HeroCarousel = () => {
                           <i className="bi bi-calendar-check me-2"></i>
                           {slide.primaryBtn}
                         </a>
-                        <button className="btn btn-hero-outlines">
+                        {/* <button className="btn btn-hero-outlines">
                           <i className="bi bi-play-circle me-2"></i>
                           {slide.secondbutton}
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>

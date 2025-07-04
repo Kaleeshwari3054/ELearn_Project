@@ -1,6 +1,9 @@
-import React ,{useEffect,useState,useRef}from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import HeroCarousel from '../components/HeroCarousel';
 import '../styles/Home.css';
+import CountUp from 'react-countup';
+
+import mainLogo from '../assets/logo-remove.jpg';
 
 const features = [
   { icon: 'bi-tv', title: 'Interactive Learning' },
@@ -14,94 +17,59 @@ const subjects = [
   {
     id: 1,
     title: 'Python Programming',
-    category: 'CODING',
-    lessons: '15 Lessons',
-    students: '45',
-    rating: '5.0',
-    reviews: '12',
     level: 'BEGINNER',
+    description: 'Year 2–5 • Maths, English, and Science',
     image: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400',
-    instructor: {
-      name: 'John Smith',
-      avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'
-    }
+    rating: '5.0',
+    reviews: '12'
   },
   {
     id: 2,
     title: 'Abacus Mental Math',
-    category: 'MATHEMATICS',
-    lessons: '12 Lessons',
-    students: '38',
-    rating: '4.9',
-    reviews: '8',
     level: 'ALL LEVELS',
+    description: 'Year 6–8 • Maths, English, and Science',
     image: 'https://images.pexels.com/photos/6238050/pexels-photo-6238050.jpeg?auto=compress&cs=tinysrgb&w=400',
-    instructor: {
-      name: 'Sarah Johnson',
-      avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100'
-    }
+    rating: '4.9',
+    reviews: '8'
   },
   {
     id: 3,
     title: 'Advanced Mathematics',
-    category: 'MATHEMATICS',
-    lessons: '20 Lessons',
-    students: '52',
-    rating: '5.0',
-    reviews: '15',
     level: 'ADVANCED',
+    description: 'Year 9 • GCSE',
     image: 'https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg?auto=compress&cs=tinysrgb&w=400',
-    instructor: {
-      name: 'Michael Brown',
-      avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100'
-    }
+    rating: '5.0',
+    reviews: '15'
   },
   {
     id: 4,
     title: 'Science Fundamentals',
-    category: 'SCIENCE',
-    lessons: '18 Lessons',
-    students: '41',
-    rating: '4.8',
-    reviews: '11',
     level: 'INTERMEDIATE',
+    description: 'A Level',
     image: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=400',
-    instructor: {
-      name: 'Dr. Emily Davis',
-      avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100'
-    }
+    rating: '4.8',
+    reviews: '11'
   },
   {
     id: 5,
-    title: 'English Literature',
-    category: 'ENGLISH',
-    lessons: '16 Lessons',
-    students: '35',
-    rating: '4.9',
-    reviews: '9',
-    level: 'ALL LEVELS',
-    image: 'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=400',
-    instructor: {
-      name: 'James Wilson',
-      avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100'
-    }
+    title: 'Computer Science',
+    level: 'EXPERT',
+    description: 'Core Coding Concepts',
+    image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=400',
+    rating: '5.0',
+    reviews: '13'
   },
   {
     id: 6,
-    title: 'Computer Science',
-    category: 'TECHNOLOGY',
-    lessons: '22 Lessons',
-    students: '48',
+    title: 'AI Courses',
+    level: 'ALL LEVELS',
+    description: 'Year 2 to A Level',
+    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400',
     rating: '5.0',
-    reviews: '13',
-    level: 'EXPERT',
-    image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=400',
-    instructor: {
-      name: 'Alex Thompson',
-      avatar: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100'
-    }
+    reviews: '10'
   }
 ];
+
 
 const getLevelColor = (level) => {
   switch (level) {
@@ -121,7 +89,7 @@ const Home = () => {
   //   tutors: 0,
   //   students: 0
   // });
-  
+
   // const sectionRef = useRef(null);
 
   // const statsData = [
@@ -147,7 +115,7 @@ const Home = () => {
   //     label: 'Tutors',
   //     icon: 'bi-person-check',
   //     color: '#3b82f6',
-  //     description: 'Expert Teachers'
+  //     description: 'Expert tutors'
   //   },
   //   { 
   //     key: 'students',
@@ -192,7 +160,7 @@ const Home = () => {
   //     const timer = setInterval(() => {
   //       step++;
   //       current = Math.min(Math.ceil(increment * step), stat.number);
-        
+
   //       setCounts(prev => ({
   //         ...prev,
   //         [stat.key]: current
@@ -206,32 +174,32 @@ const Home = () => {
   // };
 
 
-   const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
   const statsData = [
-    { 
-      number: 78, 
+    {
+      number: 78,
       suffix: '+',
       label: 'Classes Complete',
       icon: 'bi-building'
     },
-    { 
-      number: 20, 
+    {
+      number: 20,
       suffix: 'k',
       label: 'Total Students',
       icon: 'bi-people'
     },
-    { 
-      number: 400, 
+    {
+      number: 400,
       suffix: 'k',
       label: 'Library Books',
       icon: 'bi-book'
     },
-    { 
-      number: 1200, 
+    {
+      number: 1200,
       suffix: '+',
-      label: 'Certified Teachers',
+      label: 'Certified tutors',
       icon: 'bi-award'
     }
   ];
@@ -257,7 +225,7 @@ const Home = () => {
     };
   }, []);
 
- 
+
   return (
     <div className="home-page">
       <HeroCarousel />
@@ -301,10 +269,11 @@ const Home = () => {
             {/* LEFT SIDE - Images and Badge */}
             <div className="col-lg-6 position-relative text-center text-lg-start image-wrapper">
               <img
-                src="https://clapslearn.com/wp-content/uploads/2025/05/cbse-1200.webp"
-                alt="Main"
-                className="img-fluid main-img"
+                src={mainLogo}
+                alt="Main Logo"
+                className="main-img"
               />
+
               <img
                 src="https://clapslearn.com/wp-content/uploads/2025/06/10000-1.webp"
                 alt="Overlay"
@@ -335,14 +304,14 @@ const Home = () => {
                   <i className="bi bi-telephone-fill text-danger fs-4 me-3"></i>
                   <div>
                     <strong>Phone Number</strong><br />
-                    (123)-456-789
+                    +91 9600451093
                   </div>
                 </div>
                 <div className="col-md-6 d-flex align-items-center mb-3">
                   <i className="bi bi-envelope-fill text-warning fs-4 me-3"></i>
                   <div>
                     <strong>Email Address</strong><br />
-                    Info@mail.com
+                    nestonlineschooluk@gmail.com
                   </div>
                 </div>
               </div>
@@ -353,44 +322,51 @@ const Home = () => {
       </section>
 
 
- <section className="counting-stats section-padding" ref={sectionRef}>
-      <div className="container">
-        <div className="row">
-          <div className="col-12 text-center mb-5">
-            <h2 className="section-title">
-              Our <span className="text-primary">Achievements</span>
-            </h2>
-            <p className="section-subtitle">
-              Numbers that speak for our excellence in education
-            </p>
+      <section className="counting-stats section-padding" ref={sectionRef}>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center mb-5">
+              <section className="d-flex justify-content-center align-items-center">
+                <h2 className="section-title text-center">
+                  Our <span className="text-primary">Achievements</span>
+                </h2>
+              </section>
+
+              <p className="section-subtitle">
+                Numbers that speak for our excellence in education
+              </p>
+            </div>
           </div>
-        </div>
-        
-        <div className="row justify-content-center">
-          {statsData.map((stat, index) => (
-            <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
-              <div className="stat-card">
-                <div className="stat-icon">
-                  <i className={`bi ${stat.icon}`}></i>
-                </div>
-                <div className="stat-content">
-                  <div className="stat-number">
-                    <div
-                      target={stat.number} 
-                      isVisible={isVisible}
-                      suffix={stat.suffix}
-                    />
+
+          <div className="row justify-content-center">
+            {statsData.map((stat, index) => (
+              <div key={index} className="col-lg-3 col-md-6 col-sm-6 mb-4">
+                <div className="stat-card">
+                  <div className="stat-icon">
+                    <i className={`bi ${stat.icon}`}></i>
                   </div>
-                  <p className="stat-label">{stat.label}</p>
+                  <div className="stat-content">
+                    <div className="stat-number">
+                      <CountUp
+                        start={0}
+                        end={stat.number}
+                        duration={2}
+                        suffix={stat.suffix}
+                        enableScrollSpy
+                        scrollSpyDelay={300}
+                      />
+                    </div>
+
+                    <p className="stat-label">{stat.label}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-      
-       {/* <section className="stats-section" ref={sectionRef}>
+      </section>
+
+      {/* <section className="stats-section" ref={sectionRef}>
       <div className="stats-background"></div>
       <div className="stats-overlay"></div>
       
@@ -461,68 +437,62 @@ const Home = () => {
       </div>
     </section> */}
       {/* Features Section */}
-      <section className="section-padding" id="features">
-        <div className="container">
-          <div className="row text-center mb-5">
-            <div className="col-lg-8 mx-auto">
-              <h2 className="text-gradient">Why Choose ELearn?</h2>
-              <p className="lead">Experience the best in online education with our comprehensive learning platform</p>
-            </div>
-          </div>
+    <section className="py-5 bg-light" id="features">
+  <div className="container text-center">
+    <h2 className="fw-bold text-primary mb-3">
+      Why Choose <span className="text-gradient">ELearn?</span>
+    </h2>
+    <p className="lead text-secondary mb-5">
+      Learn from top educators with interactive tools and proven results.
+    </p>
 
-          <div className="row g-4">
-            <div className="col-lg-4 col-md-6">
-              <div className="card border-0 shadow-sm h-100 text-center p-4">
-                <div className="card-body">
-                  <div className="bg-primary bg-gradient rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style={{ width: '80px', height: '80px' }}>
-                    <i className="bi bi-person-check text-white fs-2"></i>
-                  </div>
-                  <h5>Qualified Teachers</h5>
-                  <p className="text-muted">Expert educators with proven track records in British and Indian curriculum</p>
-                </div>
-              </div>
+    <div className="row g-4">
+      {[
+        {
+          title: "Qualified Tutors",
+          img: "https://www.qualifiedtutor.org/wp-content/uploads/2025/03/Untitled-design-38-1080x675.png",
+          text: "Certified experts in British and Indian curriculum."
+        },
+        {
+          title: "Interactive Learning",
+          img: "https://images.stockcake.com/public/7/e/b/7ebe8c67-0ced-432a-bee9-fa028434ce22_large/interactive-learning-experience-stockcake.jpg",
+          text: "Live virtual classrooms with modern tools."
+        },
+        {
+          title: "Proven Results",
+          img: "https://www.shutterstock.com/image-vector/proven-results-sticker-isolated-on-600w-25924036.jpg",
+          text: "Track record of academic success."
+        }
+      ].map((item, i) => (
+        <div className="col-md-6 col-lg-4" key={i}>
+          <div className="card h-100 shadow-sm border-0 p-4">
+            <div className="mx-auto mb-3 rounded-circle overflow-hidden" style={{ width: 100, height: 100 }}>
+              <img src={item.img} alt={item.title} className="w-100 h-100 object-fit-cover" />
             </div>
-
-            <div className="col-lg-4 col-md-6">
-              <div className="card border-0 shadow-sm h-100 text-center p-4">
-                <div className="card-body">
-                  <div className="bg-success bg-gradient rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style={{ width: '80px', height: '80px' }}>
-                    <i className="bi bi-laptop text-white fs-2"></i>
-                  </div>
-                  <h5>Interactive Learning</h5>
-                  <p className="text-muted">Engaging virtual classrooms with advanced tools and real-time interaction</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6">
-              <div className="card border-0 shadow-sm h-100 text-center p-4">
-                <div className="card-body">
-                  <div className="bg-warning bg-gradient rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style={{ width: '80px', height: '80px' }}>
-                    <i className="bi bi-graph-up-arrow text-white fs-2"></i>
-                  </div>
-                  <h5>Proven Results</h5>
-                  <p className="text-muted">Track record of excellent grades and improved academic performance</p>
-                </div>
-              </div>
-            </div>
+            <h5 className="fw-semibold">{item.title}</h5>
+            <p className="text-muted mb-0">{item.text}</p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
       {/* online courses */}
       <section className="subjects-section section-padding">
+
         <div className="container">
-          <div className="row text-center mb-5">
-            <div className="col-lg-8 mx-auto">
-              <h2 className="section-title">Best Online Tuition</h2>
-              <h3 className="section-subtitle">Subjects</h3>
-              <p className="section-description">
-                Comprehensive online tutoring from Year 2 to A Level across all subjects with expert UK teachers
-              </p>
-            </div>
-          </div>
+
 
           <div className="row g-4">
+            <div className="section-heading">
+              <h2 className="main-title">Best Online Tuition</h2>
+              <h3 className="sub-title">Subjects</h3>
+              <p className="description">
+                Comprehensive online tutoring from <strong>Year 2 to A Level</strong> across all subjects with expert UK tutors.
+              </p>
+            </div>
+
             {subjects.map((subject) => (
               <div key={subject.id} className="col-lg-4 col-md-6">
                 <div className="subject-card">
@@ -542,55 +512,47 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div className="card-content">
-                    <div className="instructor-info">
+                  <div className="card-content text-center">
 
-                    </div>
 
                     <h4 className="subject-title">{subject.title}</h4>
+                    <p className="text-muted small">{subject.description}</p>
 
-                    <div className="subject-meta">
-                      <div className="meta-item">
-                        <i className="bi bi-journal-text"></i>
-                        <span>{subject.lessons}</span>
-                      </div>
-                      <div className="meta-item">
-                        <i className="bi bi-people"></i>
-                        <span>{subject.students}</span>
-                      </div>
+                    <div className="subject-meta d-flex justify-content-center mb-3">
                       <div className="meta-item rating">
-                        <i className="bi bi-star-fill"></i>
-                        <span>{subject.rating}({subject.reviews})</span>
+                        <i className="bi bi-star-fill text-warning"></i>
+                        <span>{subject.rating} ({subject.reviews})</span>
                       </div>
                     </div>
 
-                    <div className="card-footer">
-                      {/* <div className="price">
-                      <span className="price-amount">{subject.price}</span>
-                    </div> */}
+                    <div className="card-footer d-flex justify-content-center">
                       <button className="enroll-btn">
                         <i className="bi bi-calendar-check me-2"></i>
                         Book Demo
                       </button>
                     </div>
+
                   </div>
+
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-5">
+
+
+          {/* <div className="text-center mt-5">
             <button className="btn btn-primary btn-lg">
               <i className="bi bi-grid-3x3-gap me-2"></i>
               View All Subjects
             </button>
-          </div>
-        </div>
-      </section>
+          </div> */}
+        </div >
+      </section >
 
       {/* popular history */}
 
-      <section className="features-section">
+      < section className="features-section" >
         <div className="features-background-overlay"></div>
         <div className="container">
           <div className="row text-center mb-5">
@@ -618,10 +580,10 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Subjects Section */}
-      <section className="section-padding bg-light" id="subjects">
+      {/* <section className="section-padding bg-light" id="subjects">
         <div className="container">
           <div className="row text-center mb-5">
             <div className="col-lg-8 mx-auto">
@@ -651,9 +613,38 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </section> */}
+      <section className="exam-board-section py-5 bg-white">
+        <div className="container">
+          <h2 className="text-center mb-5 exam-heading">Choose your exam board</h2>
+
+          <div className="scroll-wrapper">
+            <div className="scroll-track d-flex align-items-center">
+              {/* Original + Duplicate Items for seamless loop */}
+              {[...Array(2)].flatMap((_, i) =>
+                [
+                  { name: "AQA", icon: "fas fa-graduation-cap", color: "text-primary" },
+                  { name: "CCEA", icon: "fas fa-certificate", color: "text-danger" },
+                  { name: "Edexcel", icon: "fas fa-book-open", color: "text-warning" },
+                  { name: "Eduqas", icon: "fas fa-university", color: "text-success" },
+                  { name: "OCR", icon: "fas fa-pen-nib", color: "text-info" },
+                  { name: "WJEC", icon: "fas fa-award", color: "text-dark" }
+                ].map((exam, index) => (
+                  <div className="exam-box text-center mx-4" key={`${i}-${index}`}>
+                    <div className={`icon-box ${exam.color}`}>
+                      <i className={`${exam.icon}`}></i>
+                    </div>
+                    <p className="exam-name mt-3">{exam.name}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
       </section>
-      
-    </div>
+
+
+    </div >
   );
 };
 

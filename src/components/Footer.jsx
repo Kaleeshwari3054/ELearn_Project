@@ -11,17 +11,19 @@ const Footer = () => {
               ELearn
             </h5>
             <p className="text-light-emphasis">
-              UK's premier online education platform offering personalized tutoring 
+              UK's premier online education platform offering personalized tutoring
               for CBSE, ICSE, IGCSE, and British curriculum students.
             </p>
             <div className="d-flex gap-3">
               <a href="https://www.facebook.com/share/1HguFTRy7G/" className="text-light"><i className="bi bi-facebook fs-5"></i></a>
-              <a href="#" className="text-light"><i className="bi bi-twitter fs-5"></i></a>
+              <a href="https://wa.me/9600451093" className="text-light" target="_blank" rel="noopener noreferrer">
+                <i className="bi bi-whatsapp fs-5"></i>
+              </a>
               <a href="https://www.instagram.com/seyontechnology?igsh=Z3AzdHk0a2ZtMGNy" className="text-light"><i className="bi bi-instagram fs-5"></i></a>
               <a href="https://www.linkedin.com/posts/seyon-technology-digital-solutions_seyontech-applaunch-mobiletracker-activity-7345548751261810688-qb2Y?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAEhJoGUBegaTEHA4FJRgue-cSaot9swp-iQ&utm_campaign=whatsapp" className="text-light"><i className="bi bi-linkedin fs-5"></i></a>
             </div>
           </div>
-          
+
           <div className="col-lg-2 col-md-6 mb-4">
             <h6 className="text-primary mb-3">Quick Links</h6>
             <ul className="list-unstyled">
@@ -31,7 +33,7 @@ const Footer = () => {
               <li><a href="/contact" className="text-light-emphasis text-decoration-none">Contact</a></li>
             </ul>
           </div>
-          
+
           <div className="col-lg-3 col-md-6 mb-4">
             <h6 className="text-primary mb-3">Curriculum</h6>
             <ul className="list-unstyled">
@@ -41,28 +43,29 @@ const Footer = () => {
               <li><a href="#" className="text-light-emphasis text-decoration-none">A-Levels</a></li>
             </ul>
           </div>
-          
+
           <div className="col-lg-3 mb-4">
             <h6 className="text-primary mb-3">Contact Info</h6>
             <ul className="list-unstyled">
               <li className="text-light-emphasis">
                 <i className="bi bi-envelope me-2"></i>
-                info@elearn.co.uk
+                nestonlineschooluk@gmail.com
               </li>
               <li className="text-light-emphasis">
                 <i className="bi bi-phone me-2"></i>
-                +44 20 1234 5678
+                +91 9600451093
               </li>
               <li className="text-light-emphasis">
-                <i className="bi bi-geo-alt me-2"></i>
-                London, United Kingdom
-              </li>
+  <i className="bi bi-geo-alt me-2"></i>
+  Kerala, Chennai, United Arab Emirates (UAE)
+</li>
+
             </ul>
           </div>
         </div>
-        
-        <hr className="border-secondary"/>
-        
+
+        <hr className="border-secondary" />
+
         <div className="row">
           <div className="col-md-6">
             <p className="text-light-emphasis mb-0">

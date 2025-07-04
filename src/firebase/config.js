@@ -1,10 +1,11 @@
-// src/firebase/config.js
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA1pHlrRsfCCVXcbS7E1UiZPn0HlBApdxU",
   authDomain: "elearn-a517b.firebaseapp.com",
+  databaseURL: "https://elearn-a517b-default-rtdb.firebaseio.com",
   projectId: "elearn-a517b",
   storageBucket: "elearn-a517b.appspot.com",
   messagingSenderId: "32628826824",
@@ -15,5 +16,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Export Firestore
-export const db = getFirestore(app);
+// Initialize Firebase services
+export const database = getDatabase(app);
+export const auth = getAuth(app);
+
+export default app;
