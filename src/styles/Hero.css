@@ -1,14 +1,16 @@
 .hero-carousel {
   height: 100vh;
-  min-height: 700px;
+  min-height: clamp(500px, 80vh, 700px);
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .carousel-item {
   height: 100vh;
-  min-height: 700px;
+  min-height: clamp(500px, 80vh, 700px);
   position: relative;
+  width: 100%;
 }
 
 .carousel-bg-image {
@@ -45,95 +47,109 @@
   height: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
+  padding: 0;
+}
+
+.carousel-content-wrapper .container-fluid {
+  width: 100%;
+  max-width: none;
+  padding: 0 15px;
+}
+
+.carousel-content-wrapper .row {
+  margin: 0;
+  width: 100%;
 }
 
 .hero-content {
-  padding: 2rem;
-  max-width: 600px;
+  padding: clamp(1rem, 4vw, 2rem);
+  max-width: min(600px, 90vw);
+  width: 100%;
 }
 
 .hero-small-title {
   color: #ff6b35;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 1rem;
   animation: fadeInUp 0.8s ease-out;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-main-title {
-  font-size: 3.5rem;
+  font-size: clamp(1.8rem, 6vw, 3.5rem);
   font-weight: 700;
   color: var(--white);
   line-height: 1.2;
   margin-bottom: 1.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 0.8s ease-out 0.2s both;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-subtitle {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 3vw, 1.3rem);
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 400;
   line-height: 1.6;
   animation: fadeInUp 0.8s ease-out 0.4s both;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: clamp(1rem, 3vw, 1.5rem);
   flex-wrap: wrap;
   animation: fadeInUp 0.8s ease-out 0.6s both;
 }
 
 .hero-buttons .btn {
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   font-weight: 600;
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .btn-hero-primary {
-  background: linear-gradient(135deg, hsl(170, 74%, 49%),hsl(170, 56%, 35%));
+  background: linear-gradient(135deg, hsl(170, 74%, 49%), hsl(170, 56%, 35%));
   color: var(--white);
   border: none;
+  flex: 1;
+  min-width: min(200px, 100%);
 }
 
 .btn-hero-primary:hover {
   background: linear-gradient(135deg, rgb(219, 101, 41), rgb(254, 112, 42));
-
   color: var(--white);
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
 }
 
-/* .btn-hero-outlines {
-  background-color: white;
-  
-}
-
-.btn-hero-outline:hover {
-   background: linear-gradient(135deg, rgb(219, 101, 41), rgb(254, 112, 42));
-
-  color: var(--primary-color);
-  transform: translateY(-3px);
-} */
-
-
-
 .btn-hero-outlines {
-  background: white; /* White background */
+  background: white;
   color: hsl(170, 74%, 49%);
   border: 2px solid hsl(170, 74%, 49%);
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+  border-radius: var(--border-radius);
   transition: all 0.3s ease;
+  flex: 1;
+  min-width: min(200px, 100%);
 }
 
 .btn-hero-outlines:hover {
@@ -144,12 +160,11 @@
   box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
 }
 
-
 /* Carousel Controls */
 .carousel-control-prev,
 .carousel-control-next {
-  width: 60px;
-  height: 60px;
+  width: clamp(50px, 8vw, 60px);
+  height: clamp(50px, 8vw, 60px);
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   top: 50%;
@@ -158,14 +173,15 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   opacity: 1;
+  z-index: 10;
 }
 
 .carousel-control-prev {
-  left: 30px;
+  left: clamp(15px, 3vw, 30px);
 }
 
 .carousel-control-next {
-  right: 30px;
+  right: clamp(15px, 3vw, 30px);
 }
 
 .carousel-control-prev:hover,
@@ -177,31 +193,32 @@
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  width: 24px;
-  height: 24px;
+  width: clamp(20px, 4vw, 24px);
+  height: clamp(20px, 4vw, 24px);
   background: none;
 }
 
 .carousel-control-prev-icon i,
 .carousel-control-next-icon i {
-  font-size: 24px;
+  font-size: clamp(20px, 4vw, 24px);
   color: var(--white);
   font-weight: bold;
 }
 
 /* Carousel Indicators */
 .carousel-indicators {
-  bottom: 30px;
+  bottom: clamp(20px, 4vw, 30px);
   margin-bottom: 0;
+  z-index: 10;
 }
 
 .carousel-indicators [data-bs-target] {
-  width: 12px;
-  height: 12px;
+  width: clamp(8px, 2vw, 12px);
+  height: clamp(8px, 2vw, 12px);
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.4);
   border: none;
-  margin: 0 8px;
+  margin: 0 clamp(4px, 1.5vw, 8px);
   transition: all 0.3s ease;
   opacity: 1;
 }
@@ -223,8 +240,112 @@
   }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Mobile-first responsive design */
+@media (max-width: 575.98px) {
+  .hero-carousel {
+    min-height: 500px;
+    height: 100vh;
+  }
+  
+  .carousel-item {
+    min-height: 500px;
+    height: 100vh;
+  }
+  
+  .hero-content {
+    padding: 1rem;
+    text-align: center;
+    margin-top: clamp(2rem, 10vh, 4rem);
+  }
+  
+  .hero-main-title {
+    font-size: 1.8rem;
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .carousel-control-prev {
+    left: 10px;
+  }
+  
+  .carousel-control-next {
+    right: 10px;
+  }
+  
+  .hero-small-title {
+    margin-top: 0;
+    font-size: 0.9rem;
+  }
+  
+  .carousel-indicators {
+    bottom: 15px;
+  }
+  
+  .carousel-indicators [data-bs-target] {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hero-carousel {
+    min-height: 550px;
+  }
+  
+  .carousel-item {
+    min-height: 550px;
+  }
+  
+  .hero-content {
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .hero-main-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .hero-buttons .btn {
+    flex: 0 1 auto;
+    min-width: 180px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
   .hero-carousel {
     min-height: 600px;
   }
@@ -234,58 +355,171 @@
   }
   
   .hero-content {
-    padding: 1rem;
-    text-align: center;
+    padding: 2rem;
   }
   
   .hero-main-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
   
   .hero-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   
   .hero-buttons {
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    gap: 1.2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-carousel {
+    min-height: 700px;
+  }
+  
+  .carousel-item {
+    min-height: 700px;
+  }
+  
+  .hero-content {
+    text-align: left;
+  }
+  
+  .hero-buttons {
+    justify-content: flex-start;
+    flex-direction: row;
   }
   
   .hero-buttons .btn {
-    width: 100%;
-    max-width: 280px;
+    flex: 0 1 auto;
+    width: auto;
+  }
+}
+
+/* Landscape orientation fixes for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-carousel,
+  .carousel-item {
+    min-height: 100vh;
+    height: 100vh;
+  }
+  
+  .hero-content {
+    margin-top: 0;
+    padding: 1rem;
+  }
+  
+  .hero-main-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-buttons {
+    gap: 0.5rem;
+  }
+  
+  .hero-buttons .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .carousel-indicators {
+    bottom: 10px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .carousel-bg-image::before {
+    background: linear-gradient(
+      90deg, 
+      rgba(0, 0, 0, 0.9) 0%, 
+      rgba(0, 0, 0, 0.7) 50%, 
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+  
+  .hero-buttons .btn {
+    border: 2px solid currentColor;
   }
   
   .carousel-control-prev,
   .carousel-control-next {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .carousel-control-prev {
-    left: 15px;
-  }
-  
-  .carousel-control-next {
-    right: 15px;
-  }
-  .hero-small-title{
-    margin-top: 100px;
+    border: 2px solid white;
   }
 }
 
-@media (max-width: 576px) {
-  .hero-main-title {
-    font-size: 2rem;
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-small-title,
+  .hero-main-title,
+  .hero-subtitle,
+  .hero-buttons {
+    animation: none;
   }
   
-  .hero-subtitle {
-    font-size: 1rem;
+  .hero-buttons .btn:hover {
+    transform: none;
   }
   
-  .hero-buttons .btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    transform: translateY(-50%);
   }
+  
+  .carousel-indicators .active {
+    transform: none;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .hero-buttons .btn:hover {
+    transform: none;
+  }
+  
+  .hero-buttons .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    transform: translateY(-50%);
+  }
+  
+  .carousel-control-prev:active,
+  .carousel-control-next:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+}
+
+/* Prevent text selection on controls */
+.carousel-control-prev,
+.carousel-control-next,
+.carousel-indicators [data-bs-target] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Ensure proper z-index layering */
+.carousel-inner {
+  overflow: hidden;
+}
+
+.carousel-item {
+  overflow: hidden;
+}
+
+/* Improve accessibility */
+.carousel-control-prev:focus,
+.carousel-control-next:focus,
+.carousel-indicators [data-bs-target]:focus {
+  outline: 2px solid #ff6b35;
+  outline-offset: 2px;
 }

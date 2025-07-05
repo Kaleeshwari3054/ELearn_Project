@@ -1,23 +1,46 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.App {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Main content container */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Remove max-width and centering that could cause issues on mobile */
+.container, .container-fluid {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Logo styles with responsive scaling */
 .logo {
-  height: 6em;
+  height: clamp(4em, 8vw, 6em);
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  max-width: 100%;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Animation with reduced motion support */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,10 +56,83 @@
   }
 }
 
+/* Card component with responsive padding */
 .card {
-  padding: 2em;
+  padding: clamp(1rem, 4vw, 2rem);
+  margin: 0 auto;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 575.98px) {
+  #root {
+    padding: 0;
+  }
+  
+  .logo {
+    height: 4em;
+    padding: 1em;
+  }
+  
+  .card {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* Ensure no horizontal overflow */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive text and button improvements */
+button, .btn {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@media (max-width: 575.98px) {
+  button, .btn {
+    width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+  }
 }
